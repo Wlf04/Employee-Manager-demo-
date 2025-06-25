@@ -1,0 +1,42 @@
+/* src/components/Sidebar/Sidebar.module.css - VERSIÓN CORRECTA */
+
+.sidebar {
+  background-color: var(--color-sidebar-fondo);
+  color: var(--color-texto-claro);
+  padding: 1.5rem;
+  height: 100vh; 
+}
+
+.sidebarHeader h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+.sidebarMenu ul {
+  list-style: none;
+  padding: 0; 
+}
+
+/* Esta clase se aplica directamente a los NavLink y <a> */
+.navLink {
+  display: block;
+  color: #94a3b8;
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.navLink:hover {
+  background-color: #334155;
+  color: #f1f5f9;
+}
+
+/* --- ESTA ES LA REGLA CORREGIDA Y SIMPLIFICADA --- */
+/* Ahora el estilo se aplica a cualquier elemento que tenga la clase .active */
+.active {
+  background-color: var(--color-primario);
+  color: white;
+}

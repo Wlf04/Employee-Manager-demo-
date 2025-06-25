@@ -1,0 +1,315 @@
+/* ===================================================================
+   HOJA DE ESTILOS PRINCIPAL - DASHBOARD DE MÉTRICAS
+   =================================================================== */
+
+/* --- 1. Estilos Globales y Variables --- */
+:root {
+    --color-primario: #8884d8;
+    --color-fondo: #f4f4f9;
+    --color-tarjeta: #ffffff;
+    --color-sidebar-fondo: #1e293b;
+    --color-texto-principal: #333333;
+    --color-texto-secundario: #5a627d;
+    --color-texto-claro: #e2e8f0;
+    --fuente-principal: 'Arial', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto-principal);
+    overflow: hidden;
+}
+
+/* --- 2. Layout Principal del Dashboard --- */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+   height: 100vh;
+}
+
+.main-content {
+  
+  overflow-y: auto;
+  min-width: 0; 
+}
+
+.main-content h1 {
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+
+
+/* --- 4. Estilos de Componentes (Chart, Filtros) --- */
+.chart-container {
+    background-color: var(--color-tarjeta);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.chart-container h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--color-texto-secundario);
+}
+
+.filter-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.filter-controls button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-primario);
+  background-color: var(--color-tarjeta);
+  color: var(--color-primario);
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-controls button:hover {
+  background-color: var(--color-primario);
+  color: var(--color-tarjeta);
+}
+
+/* --- 5. Estilos Específicos de Librerías (Recharts) --- */
+.recharts-text {
+    fill: var(--color-texto-secundario) !important;
+}
+
+
+
+.add-employee-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease; /* Transición para el hover */
+
+  /* --- CAMBIO DE POSICIONAMIENTO --- */
+  position: absolute;
+  bottom: 2rem; /* ANTES: top. Le doy un poco más de espacio para que no choque con el eje X. */
+  left: 2.5rem;   /* ANTES: right. Le doy más espacio para que no choque con las etiquetas del eje Y. */
+  z-index: 10;   /* Asegura que el botón esté por encima de la gráfica */
+}
+
+.add-employee-btn:hover {
+  background-color: #218838;
+  transform: translateY(-2px); /* Mantenemos el efecto de levantar */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Nuevo contenedor para permitir el scroll horizontal en la gráfica */
+.chart-scroll-container {
+  width: 100%;
+  overflow-x: auto; /* ¡Esta es la propiedad mágica! Muestra el scroll horizontal si el contenido es más ancho */
+  overflow-y: hidden; /* Oculta el scroll vertical que a veces aparece */
+  padding-bottom: 1rem; /* Deja espacio para la barra de scroll */
+}
+
+/* --- 9. Estilos Página de Empleados (Diseño de Tabla) --- */
+.employee-page-container h1 {
+  margin-bottom: 0.5rem;
+}
+
+.employee-page-container > p {
+  margin-bottom: 2rem;
+  color: var(--color-texto-secundario);
+}
+
+/* Contenedor para que la tabla sea responsive y tenga scroll horizontal en pantallas pequeñas */
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  background-color: var(--color-tarjeta);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.employee-table {
+  width: 100%;
+  border-collapse: collapse; /* Bordes limpios, sin doble línea */
+}
+
+.employee-table th, .employee-table td {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef; /* Línea sutil para separar filas */
+}
+
+.employee-table thead th {
+  background-color: #f8f9fa; /* Un fondo muy ligero para la cabecera */
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-texto-secundario);
+}
+
+.employee-table tbody tr:hover {
+  background-color: #f8f9fa; /* Efecto hover en toda la fila */
+}
+
+.employee-table td .employee-name {
+  font-weight: bold;
+  display: block; /* Para que el ID se ponga debajo */
+}
+
+.employee-table td .employee-id {
+  font-size: 0.8rem;
+  color: var(--color-texto-secundario);
+}
+
+/* Etiqueta para el departamento */
+.department-tag {
+  padding: 0.25rem 0.6rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  background-color: #e7e7ff; /* Fondo de color suave */
+  color: #6a6aff; /* Texto que combine */
+}
+
+/* Contenedor para los botones de acción */
+.action-buttons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%; /* Botones redondos */
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+}
+
+.icon-btn i {
+  font-size: 1rem;
+}
+
+.icon-btn.edit {
+  color: #007bff;
+}
+.icon-btn.edit:hover {
+  background-color: #e7f3ff;
+}
+
+.icon-btn.delete {
+  color: #dc3545;
+}
+.icon-btn.delete:hover {
+  background-color: #ffeef0;
+}
+
+/* --- 10. Estilos del Modal --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 500px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-header h2 {
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #aaa;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: var(--color-texto-secundario);
+}
+
+.form-group input, .form-group select {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.modal-footer button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-cancel {
+  background-color: #f1f3f5;
+  color: #333;
+}
+
+.btn-save {
+  background-color: var(--color-primario);
+  color: white;
+}
